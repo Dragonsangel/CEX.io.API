@@ -128,16 +128,13 @@ namespace CEX.io.API
       return output;
     }
 
-    public TradeHistoryList GetTradeHistory(DateTime fromDate)
+    public TradeHistoryList GetTradeHistory(int sinceTradeID)
     {
       TradeHistoryList output = new TradeHistoryList();
 
-      DateTime unixBaseTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-      TimeSpan unixTime = (fromDate.ToUniversalTime() - unixBaseTime);
-
       // Setup the since parameter
       NameValueCollection inputParams = new NameValueCollection();
-      inputParams.Add("since", Convert.ToString(Convert.ToInt32(unixTime.TotalSeconds)));
+      inputParams.Add("since", Convert.ToString(sinceTradeID));
 
       // Call the API to get the result JSON
       string jsonString = CallAPI("trade_history", false, "GHS/BTC", inputParams);
