@@ -13,6 +13,9 @@ using System.Text;
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// A list of <c>TradeHistory</c>
+  /// </summary>
   public class TradeHistoryList : List<TradeHistory>
   {
     public override string ToString()
@@ -27,18 +30,36 @@ namespace CEX.io.API.ApiObjects
     }
   }
 
+  /// <summary>
+  /// A representation of a historical trade
+  /// </summary>
   [DataContract]
   public class TradeHistory
   {
+    /// <summary>
+    /// The id of the trade
+    /// </summary>
     [DataMember(Name="tid")]
     public int TradeId { get; set; }
+    /// <summary>
+    /// The amount that was traded
+    /// </summary>
     [DataMember(Name = "amount")]
     public decimal TradeAmount { get; set; }
+    /// <summary>
+    /// The price at which was traded
+    /// </summary>
     [DataMember(Name = "price")]
     public decimal Price { get; set; }
+    /// <summary>
+    /// The date that the trade occured
+    /// </summary>
     [DataMember(Name = "date")]
     public double date { get; set; }
 
+    /// <summary>
+    /// A <c>DateTime</c> representation of date
+    /// </summary>
     public DateTime Timestamp
     {
       get

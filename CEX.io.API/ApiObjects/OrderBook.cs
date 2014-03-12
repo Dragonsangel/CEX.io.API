@@ -13,16 +13,31 @@ using System.Text;
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// The current order book of all CEX.io orders
+  /// </summary>
   [DataContract]
   public class OrderBook
   {
+    /// <summary>
+    /// The timestamp, in seconds, that the order book was retrieved
+    /// </summary>
     [DataMember(Name = "timestamp")]
     public double TimestampSeconds { get; set; }
+    /// <summary>
+    /// The list of current bids
+    /// </summary>
     [DataMember(Name = "bids")]
     public List<List<double>> Bids { get; set; }
+    /// <summary>
+    /// The list of current buys
+    /// </summary>
     [DataMember(Name = "asks")]
     public List<List<double>> Asks { get; set; }
 
+    /// <summary>
+    /// A <c>DateTime</c> representation of the TimestampSeconds
+    /// </summary>
     public DateTime Timestamp
     {
       get

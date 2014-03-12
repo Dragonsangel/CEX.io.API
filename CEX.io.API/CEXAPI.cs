@@ -18,15 +18,30 @@ using System.Text;
 
 namespace CEX.io.API
 {
+  /// <summary>
+  /// A wrapper class for the CEX.io API calls
+  /// </summary>
   public class CEXAPI
   {
     #region Private Variables
+    /// <summary>
+    /// The Account Username at CEX.io
+    /// </summary>
     private string apiUsername;
+    /// <summary>
+    /// The API access Key
+    /// </summary>
     private string apiKey;
+    /// <summary>
+    /// The API access Secret
+    /// </summary>
     private string apiSecret;
     #endregion
 
     #region Constructors
+    /// <summary>
+    /// Default constructor for <c>CEXAPI</c>
+    /// </summary>
     public CEXAPI()
     {
       apiUsername = string.Empty;
@@ -34,6 +49,12 @@ namespace CEX.io.API
       apiSecret = string.Empty;
     }
 
+    /// <summary>
+    /// Overloaded constructor for <c>CEXAPI</c>
+    /// </summary>
+    /// <param name="username">The CEX.io Username</param>
+    /// <param name="key">The CEX.io API Key</param>
+    /// <param name="secret">The CEX.io API secret</param>
     public CEXAPI(string username, string key, string secret)
     {
       apiUsername = username;
@@ -114,6 +135,10 @@ namespace CEX.io.API
 
     #region Public Methods
     #region Public Data Functions
+    /// <summary>
+    /// Retrieves the current ticker information
+    /// </summary>
+    /// <returns>A <c>Ticker</c> object populated with the values of the current information</returns>
     public Ticker GetTicker()
     {
       Ticker output;
@@ -128,6 +153,11 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Retrieves the last 1000 trades from CEX.io
+    /// </summary>
+    /// <param name="sinceTradeID">From how many milliseconds ago should the trade history be retrieved (NOTE: currently CEX.io ignores this parameter)</param>
+    /// <returns>A <c>TradeHistoryList</c> object of the last 1000 trades</returns>
     public TradeHistoryList GetTradeHistory(int sinceTradeID)
     {
       TradeHistoryList output = new TradeHistoryList();
@@ -149,6 +179,11 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Retrieve the current order history
+    /// </summary>
+    /// <param name="depth">The depth that the history needs to be returned in</param>
+    /// <returns>A <c>OrderBook</c> object with the current bid and buy orders</returns>
     public OrderBook GetOrderHistory(int depth)
     {
       OrderBook output = new OrderBook();
@@ -173,6 +208,10 @@ namespace CEX.io.API
     #endregion
 
     #region Private Data Functions
+    /// <summary>
+    /// Retrieve the current account balance for the account
+    /// </summary>
+    /// <returns>A <c>AccountBalance</c> object with the current account information in it</returns>
     public AccountBalance GetAccountBalance()
     {
       AccountBalance output;
@@ -187,6 +226,10 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Retrieves the current open orders for the account
+    /// </summary>
+    /// <returns>An <c>OpenOrderList</c> of the current orders</returns>
     public OpenOrderList GetOpenOrders()
     {
       OpenOrderList output;
@@ -201,6 +244,11 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Cancels a specific order as determined by <paramref name="OrderID"/>
+    /// </summary>
+    /// <param name="OrderID">The ID of the order to cancel</param>
+    /// <returns><c>true</c> if the order was cancelled, otherwise <c>false</c></returns>
     public bool CancelOrder(int OrderID)
     {
       // Setup the since parameter
@@ -217,6 +265,13 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Places an order on the account
+    /// </summary>
+    /// <param name="orderType">The type of order to place</param>
+    /// <param name="price">The price at which to place the order</param>
+    /// <param name="amount">The amount that should be processed by the order</param>
+    /// <returns></returns>
     public OpenOrder PlaceOrder(OrderType orderType, double price, double amount)
     {
       OpenOrder output;
@@ -237,6 +292,10 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Retrieves the current Hash rate of the account
+    /// </summary>
+    /// <returns>A <c>HashRate</c> object with the current hash rate information</returns>
     public HashRate GetHashRate()
     {
       HashRate output;
@@ -251,6 +310,10 @@ namespace CEX.io.API
       return output;
     }
 
+    /// <summary>
+    /// Retrieves the current hash rate of the different workers
+    /// </summary>
+    /// <returns>A <c>WorkersHashRates</c> object with the information</returns>
     public WorkersHashRates GetWorkerHashRate()
     {
       WorkersHashRates output;

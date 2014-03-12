@@ -10,9 +10,15 @@ using System.Runtime.Serialization;
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// An account balance for a tradable currency
+  /// </summary>
   [DataContract]
   public class AccountBalanceTrade : AccountBalanceNonTrade
   {
+    /// <summary>
+    /// The amount currently in orders
+    /// </summary>
     [DataMember(Name = "orders")]
     public double InOrders { get; set; }
 

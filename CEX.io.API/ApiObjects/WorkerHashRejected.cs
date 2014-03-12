@@ -11,13 +11,25 @@ using System.Text;
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// A representation of worker shares that were rejected
+  /// </summary>
   [DataContract]
   public class WorkerHashRejected
   {
+    /// <summary>
+    /// The number of stale shares
+    /// </summary>
     [DataMember(Name="stale")]
     public string Stale { get; set; }
+    /// <summary>
+    /// The number of duplicate shares
+    /// </summary>
     [DataMember(Name = "duplicate")]
     public int Duplicate { get; set; }
+    /// <summary>
+    /// The number of shares at a lower difficulty
+    /// </summary>
     [DataMember(Name = "lowdiff")]
     public int LowDifficulty { get; set; }
 

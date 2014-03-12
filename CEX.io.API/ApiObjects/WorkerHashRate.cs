@@ -12,12 +12,15 @@ using System.Text;
 
 namespace CEX.io.API.ApiObjects
 {
-  public class WorkersHashRates : List<WorkersHashRates>
+  /// <summary>
+  /// The list of <c>WorkerHashRate</c>
+  /// </summary>
+  public class WorkersHashRates : List<WorkerHashRate>
   {
     public override string ToString()
     {
       StringBuilder outputString = new StringBuilder();
-      foreach (WorkersHashRates item in this)
+      foreach (WorkerHashRate item in this)
       {
         outputString.AppendLine(item.ToString());
       }
@@ -26,9 +29,15 @@ namespace CEX.io.API.ApiObjects
     }
   }
 
+  /// <summary>
+  /// A representation of a workers hash rate
+  /// </summary>
   [DataContract]
   public class WorkerHashRate: HashRate
   {
+    /// <summary>
+    /// The <c>WorkerHashRejected</c> values of rejected shares by the worker
+    /// </summary>
     [DataMember(Name = "rejected")]
     public WorkerHashRejected Rejected { get; set; }
 

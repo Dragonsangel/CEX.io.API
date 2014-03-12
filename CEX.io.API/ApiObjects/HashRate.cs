@@ -11,23 +11,50 @@ using System.Text;
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// A representation of the Hash Rate of an CEX.io account
+  /// </summary>
   [DataContract]
   public class HashRate
   {
+    /// <summary>
+    /// The average hash rate, in MH/s, over the last 5 minutes
+    /// </summary>
     [DataMember(Name = "last5m")]
     public double Last5Mins { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, over the last 15 minutes
+    /// </summary>
     [DataMember(Name = "last15m")]
     public double Last15Mins { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, over the last 1 hour
+    /// </summary>
     [DataMember(Name = "last1h")]
     public double Last1Hour { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, over the last 1 day
+    /// </summary>
     [DataMember(Name = "last1d")]
     public double Last1Day { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, of the previous 5 minutes
+    /// </summary>
     [DataMember(Name = "prev5m")]
     public double Prev5Mins { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, of the previous 15 minutes
+    /// </summary>
     [DataMember(Name = "prev15m")]
     public double Prev15Mins { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, of the previous 1 hour
+    /// </summary>
     [DataMember(Name = "prev1h")]
     public double Prev1Hour { get; set; }
+    /// <summary>
+    /// The average hash rate, in MH/s, of the previous 1 day
+    /// </summary>
     [DataMember(Name = "prev1d")]
     public double Prev1Day { get; set; }
 

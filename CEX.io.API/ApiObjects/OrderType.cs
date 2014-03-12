@@ -9,9 +9,18 @@
 
 namespace CEX.io.API.ApiObjects
 {
+  /// <summary>
+  /// Enumerator for the order types
+  /// </summary>
   public enum OrderType
   {
+    /// <summary>
+    /// A sell order type
+    /// </summary>
     sell,
+    /// <summary>
+    /// A buy order type
+    /// </summary>
     buy
   }
 }
