@@ -59,7 +59,7 @@ namespace CEX.io.API.ApiObjects
       {
         foreach (List<double> outerItem in Bids)
         {
-          output.AppendLine(string.Format("    {1,15:F8} at {0,13:F8}", outerItem[0], outerItem[1]));
+          output.AppendLine(string.Format("    {1:F10} at {0:F10}", outerItem[0], outerItem[1]));
         }
       }
       else
@@ -72,7 +72,7 @@ namespace CEX.io.API.ApiObjects
       {
         foreach (List<double> outerItem in Asks)
         {
-          output.AppendLine(string.Format("    {1,15:F8} at {0,13:F8}", outerItem[0], outerItem[1]));
+          output.AppendLine(string.Format("    {1:F10} at {0:F10}", outerItem[0], outerItem[1]));
         }
       }
       else

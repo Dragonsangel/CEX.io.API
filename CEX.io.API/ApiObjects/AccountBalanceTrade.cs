@@ -24,7 +24,19 @@ namespace CEX.io.API.ApiObjects
 
     public override string ToString()
     {
-      return string.Format("{0,13:F8} - {1,13:F8}", Available, InOrders);
+      return ToString(true);
+    }
+
+    public string ToString(bool includeOrders)
+    {
+      if (includeOrders)
+      {
+        return string.Format("{0:F8} - {1:F8}", Available, InOrders);
+      }
+      else
+      {
+        return string.Format("{0:F8}", Available);
+      }
     }
   }
 }

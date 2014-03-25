@@ -64,12 +64,12 @@ namespace CEX.io.API
     #endregion
 
     #region Private Methods
-    private Int32 GetNonce()
+    private Int64 GetNonce()
     {
-      return Convert.ToInt32(DateTime.Now.TimeOfDay.TotalMilliseconds);
+      return Convert.ToInt64(Math.Truncate((DateTime.UtcNow - DateTime.MinValue).TotalMilliseconds));
     }
 
-    private string GetSignature(int nonce)
+    private string GetSignature(Int64 nonce)
     {
       // Validation first
       if (string.IsNullOrEmpty(apiUsername))
@@ -106,7 +106,7 @@ namespace CEX.io.API
       // Determine if we need to add the private parameters
       if (isPrivate)
       {
-        int currentNonce = GetNonce();
+        Int64 currentNonce = GetNonce();
         inputParams.Add("key", apiKey);
         inputParams.Add("signature", GetSignature(currentNonce));
         inputParams.Add("nonce", Convert.ToString(currentNonce));
@@ -123,6 +123,26 @@ namespace CEX.io.API
       {
         byte[] returnValue = webClient.UploadValues(apiUrl, inputParams);
         responseText = Encoding.UTF8.GetString(returnValue);
+
+        // Check for an error
+        ApiError apiError;
+        using (Stream jsonStream = new MemoryStream(Encoding.UTF8.GetBytes(responseText)))
+        {
+          DataContractJsonSerializer jSerializer = new DataContractJsonSerializer(typeof(ApiError));
+          apiError = jSerializer.ReadObject(jsonStream) as ApiError;
+        }
+
+        // If there was an API error, throw it with details
+        if ((apiError != null) &&
+            !string.IsNullOrWhiteSpace(apiError.ErrorMessage))
+        {
+          throw new ApiException(inputParams, apiError);
+        }
+      }
+      catch (ApiException apiExc)
+      {
+        // Rethrow the exception
+        throw apiExc;
       }
       catch (Exception exc)
       {
@@ -168,7 +188,7 @@ namespace CEX.io.API
 
       // Call the API to get the result JSON
       string jsonString = CallAPI("trade_history", false, "GHS/BTC", inputParams);
-      
+
       // Convert the JSON into something we can use
       using (Stream jsonStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
       {
@@ -257,7 +277,7 @@ namespace CEX.io.API
 
       bool output;
       string orderSuccessString = CallAPI("cancel_order", true, string.Empty, inputParams);
-      
+
       if (!Boolean.TryParse(orderSuccessString, out output))
       {
         output = false;

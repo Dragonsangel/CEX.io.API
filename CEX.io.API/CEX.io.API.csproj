@@ -44,6 +44,8 @@
     <Compile Include="ApiObjects\AccountBalance.cs" />
     <Compile Include="ApiObjects\AccountBalanceNonTrade.cs" />
     <Compile Include="ApiObjects\AccountBalanceTrade.cs" />
+    <Compile Include="ApiObjects\ApiError.cs" />
+    <Compile Include="ApiObjects\ApiException.cs" />
     <Compile Include="ApiObjects\HashRate.cs" />
     <Compile Include="ApiObjects\OpenOrder.cs" />
     <Compile Include="ApiObjects\OrderBook.cs" />

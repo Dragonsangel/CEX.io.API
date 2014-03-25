@@ -24,7 +24,7 @@ namespace CEX.io.API.ApiObjects
 
     public override string ToString()
     {
-      return string.Format("{0,13:F8}", Available);
+      return string.Format("{0:F8}", Available);
     }
   }
 }
